@@ -13,9 +13,10 @@ struct LoginView: View {
     @State private var password = ""
     @State private var isPasswordHidden = true
     
+    @State private var showMain = false
+    
     var body: some View {
         VStack (spacing: 16){
-            
             
             TextField("Email", text: $email)
                 .frame(height: 24)
@@ -47,7 +48,7 @@ struct LoginView: View {
             .padding(.horizontal)
             
             Button {
-                
+                showMain.toggle()
             } label: {
                 Text("Sign in")
                     .padding()
@@ -58,11 +59,18 @@ struct LoginView: View {
                     .padding(.horizontal)
             }
         }
+        .navigationDestination(isPresented: $showMain, destination: {
+            MainView()
+        })
+        .navigationBarBackButtonHidden()
         .tint(.green)
         
     }
 }
 
 #Preview {
-    LoginView()
+    NavigationStack {
+        LoginView()
+    }
+   
 }
