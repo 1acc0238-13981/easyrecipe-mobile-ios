@@ -5,7 +5,7 @@
 //  Created by Alumnos on 19/11/26.
 //
 
-struct Recipe: Identifiable {
+struct Recipe: Identifiable, Hashable {
     let id: Int
     let name: String
     let ingredients: [String]
