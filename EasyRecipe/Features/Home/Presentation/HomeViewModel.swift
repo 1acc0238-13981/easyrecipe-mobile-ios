@@ -9,12 +9,21 @@ import Observation
 
 @Observable
 class HomeViewModel {
-    private var repository: RecipeRepository = RecipeRepositoryImpl()
+    private let getRecipes: GetRecipesUseCase
+    private let getFavorites: GetFavoritesUseCase
+    private let toggleFavorite: ToggleFavoriteUseCase
+    
+    init(getRecipes: GetRecipesUseCase, getFavorites: GetFavoritesUseCase, toggleFavorite: ToggleFavoriteUseCase) {
+        self.getRecipes = getRecipes
+        self.getFavorites = getFavorites
+        self.toggleFavorite = toggleFavorite
+    }
+    
     private(set) var recipes: [Recipe] = []
     
     func loadRecipes() async {
         do {
-           recipes = try await repository.getRecipes()
+            recipes = try await getRecipes.execute()
         } catch {
             
         }

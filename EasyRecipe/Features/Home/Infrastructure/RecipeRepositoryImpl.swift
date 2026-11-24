@@ -6,7 +6,13 @@
 //
 
 class RecipeRepositoryImpl: RecipeRepository {
-    private let api = RecipeApi()
+    
+    private let api: RecipeApi
+    
+    init(api: RecipeApi) {
+        self.api = api
+    }
+    
     func getRecipes() async throws -> [Recipe] {
         let dtos = try await api.getRecipes()
         return dtos.map { dto in
