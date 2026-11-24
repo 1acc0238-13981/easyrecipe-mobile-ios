@@ -27,13 +27,10 @@ struct RecipeDetailView: View {
                     }
                 }
                 .scaledToFill()
-                .frame(width: geometry.size.width, height: 300)
+                .frame(width: geometry.size.width,height: 300)
                 .clipped()
-                    
-                        
-            
-            
             }
+            .frame(height: 300)
             
             Text(recipe.name)
                 .font(.headline)

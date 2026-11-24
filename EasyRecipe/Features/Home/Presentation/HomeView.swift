@@ -26,12 +26,13 @@ struct HomeView: View {
             }
             .listStyle(.plain)
         }
-        .navigationDestination(item: $selectedRecipe, destination: { recipe in
-            RecipeDetailView(recipe: recipe)
-        })
+        
         .task {
             await viewModel.loadRecipes()
         }
+        .navigationDestination(item: $selectedRecipe, destination: { recipe in
+            RecipeDetailView(recipe: recipe)
+        })
         
     }
 }
