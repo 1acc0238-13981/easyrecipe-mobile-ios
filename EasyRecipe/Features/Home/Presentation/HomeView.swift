@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var viewModel = HomeViewModel()
+    @State private var viewModel = AppContainer().makeViewModel()
     
     @State private var selectedRecipe: Recipe?
     

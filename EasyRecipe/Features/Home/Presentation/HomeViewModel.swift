@@ -20,13 +20,23 @@ class HomeViewModel {
     }
     
     private(set) var recipes: [Recipe] = []
+    private(set) var favoriteIds: Set<Int> = []
+    
+    var favorites: [Recipe] {
+        return recipes.filter { recipe in
+            favoriteIds.contains(recipe.id)
+        }
+    }
     
     func loadRecipes() async {
         do {
             recipes = try await getRecipes.execute()
+            favoriteIds = try getFavorites.execute()
         } catch {
             
         }
         
     }
+    
+    
 }
