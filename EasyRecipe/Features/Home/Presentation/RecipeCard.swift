@@ -9,6 +9,9 @@ import SwiftUI
 
 struct RecipeCard: View {
     let recipe: Recipe
+    let isFavorite: Bool
+    let onToggleFavorite: () -> Void
+    
     var body: some View {
         HStack {
             AsyncImage(url: URL(string: recipe.image)) { phase in
@@ -37,6 +40,19 @@ struct RecipeCard: View {
                 Text(recipe.cuisine)
                     .font(.subheadline)
             }
+            
+            Spacer()
+            
+            Button {
+                onToggleFavorite()
+            } label: {
+                Image(systemName: isFavorite ? "heart.fill": "heart")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 20, height: 20)
+            }
+            .buttonStyle(.plain)
+
         }
         
     }

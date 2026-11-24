@@ -38,5 +38,16 @@ class HomeViewModel {
         
     }
     
+    func toggleFavoriteRecipe(id: Int) {
+        do {
+            try toggleFavorite.execute(id: id)
+            favoriteIds = try getFavorites.execute()
+
+        } catch {
+            
+        }
+
+    }
+    
     
 }
